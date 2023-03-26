@@ -1,16 +1,14 @@
-const http = require('http');
+const express = require('express');
 
 const fs = require('fs');
 
 const cors = require('cors');
 
-const server = http.createServer();
+const app = express();
 
-server.use(cors());
+app.use(cors());
 
-server.on('request', (req, res) => {
-
-  res.writeHead(200, { 'Content-Type': 'application/json' });
+app.get('/', (req, res) => {
 
   fs.readFile('api.json', 'utf8', (err, data) => {
 
@@ -18,9 +16,7 @@ server.on('request', (req, res) => {
 
       console.error(err);
 
-      res.statusCode = 500;
-
-      res.end('Internal Server Error');
+      res.status(500).send('Internal Server Error');
 
       return;
 
@@ -28,11 +24,17 @@ server.on('request', (req, res) => {
 
     const dataObj = JSON.parse(data);
 
-    res.end(JSON.stringify(dataObj));
+    res.json(dataObj);
 
   });
 
 });
 
-server.listen(443);
+const server = app.listen(3000, () => {
+
+  console.log(`Server listening on port ${server.address().port}`);
+
+});
+
+
 
