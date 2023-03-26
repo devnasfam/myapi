@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 
     const dataObj = JSON.parse(data);
 
-    res.end("Hello");
+    res.json(dataObj);
 
   });
 
