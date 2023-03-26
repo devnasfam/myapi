@@ -12,7 +12,7 @@ server.on('request', (req, res) => {
 
   res.writeHead(200, { 'Content-Type': 'application/json' });
 
-  fs.readFile('package.json', 'utf8', (err, data) => {
+  fs.readFile('api.json', 'utf8', (err, data) => {
 
     if (err) {
 
