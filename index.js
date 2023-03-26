@@ -4,9 +4,9 @@ const fs = require('fs');
 
 const cors = require('cors');
 
-const server = http.createServer();
+//const server = http.createServer();
 
-server.use(cors());
+//server.use(cors());
 
 server.on('request', (req, res) => {
 
