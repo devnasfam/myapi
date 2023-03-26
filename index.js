@@ -1,10 +1,19 @@
-const express=require("express");
-const cors=require("cors");
-const app=express();
-app.use(cors());
+const express = require('express');
 
-app.get('/', (req, res)=>{
-    res.send("Hello Dev Nasfam!");
+const app = express();
+
+const fs = require('fs');
+
+const jsonData = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+
+app.get('/api/data', (req, res) => {
+
+  res.send(jsonData);
+
 });
 
-app.listen(8080);
+app.listen(3000, () => {
+
+  console.log('Server started on port 3000');
+
+});
